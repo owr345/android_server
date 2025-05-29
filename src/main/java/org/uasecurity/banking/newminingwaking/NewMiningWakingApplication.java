@@ -19,8 +19,10 @@ public class NewMiningWakingApplication {
     }
 
     private static void startFirebaseAdmin() {
-        try (InputStream credentialIn =
-                     NewMiningWakingApplication.class.getResourceAsStream("/etc/secrets/firebase_key.json")) {
+        try (
+            String secretPath = "/etc/secrets/firebase_key.json";
+            InputStream credentialIn =
+                     NewMiningWakingApplication.class.getResourceAsStream(secretPath)) {
             if (credentialIn == null) {
                 throw new RuntimeException("can't find server credential for firebase");
             }
